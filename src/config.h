@@ -23,7 +23,6 @@ class Configuration {
 
  public:
   Configuration() { fileName = "/config.json"; }
-  Configuration(String fileName) : fileName(fileName){};
 
   String getFileName() { return fileName; }
   String getBoardName() { return boardName; }

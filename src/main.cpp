@@ -10,7 +10,7 @@ void setup() {
   wifiManager.setTimeout(60);
   wifiManager.autoConnect();
 
-  configTime("MSK-3", 0, "pool.ntp.org");
+  configTime("MSK-3", "time.google.com", "time.windows.com", "pool.ntp.org");
   timerOneSecond.setInterval(1000);
 
   Configuration config;
@@ -47,3 +47,5 @@ void updateTime() {
   time(&unixTimeNow);
   localtime_r(&unixTimeNow, &timeStructureNow);
 }
+
+
