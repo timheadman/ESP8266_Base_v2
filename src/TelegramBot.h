@@ -7,8 +7,8 @@
 #include <WiFiClientSecure.h>
 #include <time.h>
 
+#include "Configuration.h"
 #include "common.h"
-#include "config.h"
 #include "version.h"
 
 // main.h
@@ -20,16 +20,17 @@ extern struct tm timeStructureNow;
 
 class TelegramBot {
  private:
-  BearSSL::WiFiClientSecure clientTg;
-  BearSSL::Session sessionTg;
-  BearSSL::X509List certificateTg;
+  BearSSL::WiFiClientSecure client;
+  BearSSL::Session session;
+  BearSSL::X509List certificate;
   AsyncTelegram2 myBot;
 
  public:
   TelegramBot();
 
-  void sendTelegramMessage(String message);
-  void getTelegramUpdate();
+  void init();
+  void sendMessage(String message);
+  void update();
 };
 
 #endif  // ESP8266_BASE_V2_TELEGRAM_H_

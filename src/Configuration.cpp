@@ -1,4 +1,4 @@
-#include "config.h"
+#include "Configuration.h"
 
 /**
  * Загрузка конфигурационного файла (LittleFS) в структуру Config

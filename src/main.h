@@ -7,9 +7,11 @@
 #include <GyverTimer.h>
 #include <WiFiManager.h>
 
-#include "config.h"
+#include "Configuration.h"
+#include "TelegramBot.h"
 
 void updateTime();
 void triggerOneSecond();
+String getTimeString();
 
 #endif  // ESP8266_BASE_V2_BASE_H_
