@@ -1,7 +1,5 @@
 {
   "boardName": "Test Board",
-  "ssid": "SSID",
-  "ssidPwd": "PASSWORD",
   "host": "HOSTNAME",
   "port": 80,
   "botToken": "0000000000:XXXXXXXXXXXXXXXXXXXXXXXX",

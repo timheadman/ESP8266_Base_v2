@@ -28,8 +28,6 @@ bool Configuration::loadConfiguration() {
   Serial.print(F("*CFG: Loading from file "));
   // serializeJsonPretty(jsonDoc, Serial);
   boardName = jsonDoc["boardName"].as<String>();
-  ssid = jsonDoc["ssid"].as<String>();
-  ssidPwd = jsonDoc["ssidPwd"].as<String>();
   host = jsonDoc["host"].as<String>();
   port = jsonDoc["port"].as<uint16_t>();
   botToken = jsonDoc["botToken"].as<String>();
@@ -64,8 +62,6 @@ void Configuration::saveConfiguration() {
   // https://arduinojson.org/v6/assistant/
   DynamicJsonDocument jsonDoc(512);
   jsonDoc["boardName"] = boardName;
-  jsonDoc["ssid"] = ssid;
-  jsonDoc["ssidPwd"] = ssidPwd;
   jsonDoc["host"] = host;
   jsonDoc["port"] = port;
   jsonDoc["botToken"] = botToken;

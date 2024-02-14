@@ -1,39 +1,32 @@
 #include "telegram.h"
 
 #define USE_CLIENTSSL true
-#include <ESP8266WiFi.h>
-#include <time.h>
-BearSSL::WiFiClientSecure clientTg;
-BearSSL::Session sessionTg;
-BearSSL::X509List certificateTg(telegram_cert);
 
-AsyncTelegram2 myBot(clientTg);
-
-void initTelegram() {
-  // Sync time with NTP, to check properly Telegram certificate
-  // Set certficate, session and some other base client properies
+TelegramBot::TelegramBot() {
+  BearSSL::X509List certificateTg(telegram_cert);
+  AsyncTelegram2 myBot(clientTg);
   clientTg.setSession(&sessionTg);
   clientTg.setTrustAnchors(&certificateTg);
   clientTg.setBufferSizes(1024, 1024);
 
   Serial.print(F("*TGM: Test Telegram connection... "));
-  // Set the Telegram bot properies
+
   myBot.setUpdateTime(2000);
   myBot.setTelegramToken(config.getBotToken().c_str());
   myBot.begin() ? Serial.println("[OK]") : Serial.println("[FAIL]");
-  sendTelegramMessage("Запуск модуля.");
+
+  sendTelegramMessage("Модуль запущен.");
 }
 
-void sendTelegramMessage(String message) {
+void TelegramBot::sendTelegramMessage(String message) {
   myBot.sendTo(config.getAdminChatId(),
-               message + "\n" + String(asctime(&timeStructureNow)) + "ID: " + mac +
-                   " (" + config.getBoardName() + ")" +
-                   "\nSSID: " + String(config.getSsid()) +
+               message + "\n" + String(asctime(&timeStructureNow)) +
+                   "ID: " + mac + " (" + config.getBoardName() + ")" +
                    " IP: " + WiFi.localIP().toString() + "\nv." + VERSION +
                    " (" + BUILD_TIMESTAMP + ")");
 }
 
-void getTelegramUpdate() {
+void TelegramBot::getTelegramUpdate() {
   TBMessage msg;
   if (myBot.getNewMessage(msg)) {
     String message = msg.text;

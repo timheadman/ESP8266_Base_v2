@@ -9,8 +9,6 @@ class Configuration {
  private:
   String fileName;
   String boardName;
-  String ssid;
-  String ssidPwd;
   String host;
   uint16_t port;
   String botToken;
@@ -26,8 +24,6 @@ class Configuration {
 
   String getFileName() { return fileName; }
   String getBoardName() { return boardName; }
-  String getSsid() { return ssid; }
-  String getSsidPwd() { return ssidPwd; }
   String getHost() { return host; }
   uint16_t getPort() { return port; }
   String getBotToken() { return botToken; }
