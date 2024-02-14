@@ -1,13 +1,9 @@
-#ifndef DIY_LGT8F328P_ADS1115_LCD1602_MATH_H_
-#define DIY_LGT8F328P_ADS1115_LCD1602_MATH_H_
+#ifndef ESP8266_WIFI_BASE_H_
+#define ESP8266_WIFI_BASE_H_
 
-#include <Adafruit_ADS1X15.h>
-#include <Arduino.h>
-#include <LiquidCrystal_I2C.h>
-#include <SPI.h>
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <ESP8266WiFi.h>
+#include <WiFiManager.h>
 
-void initLCD();
-void initADS1115();
-void printADS1115();
-
-#endif  // DIY_LGT8F328P_ADS1115_LCD1602_MATH_H_
+#endif  // ESP8266_WIFI_BASE_H_
