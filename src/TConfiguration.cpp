@@ -1,11 +1,11 @@
-#include "Configuration.h"
+#include "TConfiguration.h"
 
 /**
  * Загрузка конфигурационного файла (LittleFS) в структуру Config
  * @param config ссылка на структуру с параметрами
  * @return true или false
  */
-bool Configuration::loadConfiguration() {
+bool TConfiguration::loadConfiguration() {
   // Открываем файл для чтения
   Serial.println(F("*CFG: Loading configuration..."));
   File configFile = LittleFS.open(fileName, "r");
@@ -49,7 +49,7 @@ bool Configuration::loadConfiguration() {
  * @param config ссылка на структуру с параметрами
  */
 // Запись конфигурационного файла (LittleFS)
-void Configuration::saveConfiguration() {
+void TConfiguration::saveConfiguration() {
   // Open file for writing
   File configFile = LittleFS.open(fileName, "w+");
   if (!configFile) {
@@ -83,7 +83,7 @@ void Configuration::saveConfiguration() {
 /**
  * Вывести содержимое конфигурационного файла в Serial порт.
  */
-void Configuration::printConfiguration() {
+void TConfiguration::printConfiguration() {
   // Open file for reading
   File file = LittleFS.open(fileName, "r");
   if (!file) {

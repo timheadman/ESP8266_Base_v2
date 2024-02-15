@@ -7,9 +7,10 @@
 #include <GyverTimer.h>
 #include <WiFiManager.h>
 
-#include "Configuration.h"
-#include "TelegramBot.h"
+#include "TConfiguration.h"
+#include "TTelegram.h"
 
 void triggerOneSecond();
+void loadPins();
 
 #endif  // ESP8266_BASE_V2_BASE_H_

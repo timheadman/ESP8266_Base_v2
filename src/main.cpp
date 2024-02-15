@@ -2,14 +2,17 @@
 // AP IP address: 192.168.4.1, set manual IP in network settings.
 GTimer timerOneSecond(MS);
 struct tm timeStructureNow;
-Configuration config;
-TelegramBot telegram;
+TConfiguration config;
+TTelegram telegram;
+Pins pins;
 
 // **************************************************
 // ********************* SETUP **********************
 // **************************************************
 void setup() {
   Serial.begin(115200);
+
+  pinMode(D4, OUTPUT);
 
   WiFiManager wifiManager;
   wifiManager.setTimeout(60);
@@ -51,7 +54,18 @@ void loop() {
  * Блок инструкций для запуска раз в секунду.
  */
 void triggerOneSecond() {
+  loadPins();
   telegram.checkMessages();
+  digitalWrite(D4, digitalRead(D4));
 }
 
-
+/**
+ * Блок заполнения состояния пинов.
+ */
+void loadPins() {
+  pins.d4 = digitalRead(D4);
+  pins.d5 = digitalRead(D5);
+  pins.d6 = digitalRead(D6);
+  pins.d7 = digitalRead(D7);
+  pins.d8 = digitalRead(D8);
+}
