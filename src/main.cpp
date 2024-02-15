@@ -56,7 +56,7 @@ void loop() {
 void triggerOneSecond() {
   loadPins();
   telegram.checkMessages();
-  digitalWrite(D4, digitalRead(D4));
+  digitalWrite(D4, !digitalRead(D4));
 }
 
 /**
