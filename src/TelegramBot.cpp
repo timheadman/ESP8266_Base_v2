@@ -1,8 +1,9 @@
 #include "TelegramBot.h"
 
-TelegramBot::TelegramBot() : certificate(telegram_cert), myBot(client) {}
-
-void TelegramBot::init() {
+void TelegramBot::init(String token, int64_t adminChatId, String boardName) {
+  this->token = token;
+  this->adminChatId = adminChatId;
+  this->boardName = boardName;
   client.setSession(&session);
   client.setTrustAnchors(&certificate);
   client.setBufferSizes(1024, 1024);
@@ -10,18 +11,19 @@ void TelegramBot::init() {
   Serial.print(F("*TGM: Test Telegram connection... "));
 
   myBot.setUpdateTime(2000);
-  myBot.setTelegramToken(config.getBotToken().c_str());
+  myBot.setTelegramToken(token.c_str());
   myBot.begin() ? Serial.println("[OK]") : Serial.println("[FAIL]");
 
   sendMessage("Модуль запущен.");
 }
 
 void TelegramBot::sendMessage(String message) {
-  myBot.sendTo(config.getAdminChatId(),
-               message + "\n" + String(asctime(&timeStructureNow)) +
-                   "ID: " + mac + " (" + config.getBoardName() + ")" +
-                   " IP: " + WiFi.localIP().toString() + "\nv." + VERSION +
-                   " (" + BUILD_TIMESTAMP + ")");
+  String boardNameLocal = (boardName == "") ? "" : boardName + "\n";
+  myBot.sendTo(adminChatId, message + "\n----------\n" + boardNameLocal +
+                                String(asctime(&timeStructureNow)) +
+                                "MAC: " + WiFi.macAddress() +
+                                "\nIP: " + WiFi.localIP().toString() + "\nv." +
+                                VERSION + "(" + BUILD_TIMESTAMP + ")");
 }
 
 void TelegramBot::update() {
@@ -36,13 +38,13 @@ void TelegramBot::update() {
       uint16_t hour = timeDiff / 3600;
       uint8_t min = (timeDiff / 60) % 60;
       uint8_t sec = timeDiff % 60;
-      String strTimeDiff = String(hour) + " часов " + String(min) + " минут " +
-                           String(sec) + " секунд.";
-      sendMessage("\nОнлайн: " + strTimeDiff);
+      String strTimeDiff = String(hour) + " hours " + String(min) +
+                           " minutes " + String(sec) + " seconds.";
+      sendMessage("\nOnline: " + strTimeDiff);
     } else if (message == "/sensors") {
       sendMessage("Sensors: ");
     } else {
-      sendMessage("Получено сообщение: " + message);
+      sendMessage("Message: " + message);
     }
   }
 }

@@ -9,12 +9,8 @@
 
 #include "Configuration.h"
 #include "common.h"
-#include "version.h"
+#include "../include/version.h"
 
-// main.h
-extern String mac;
-// config.h
-extern Configuration config;
 // main.h
 extern struct tm timeStructureNow;
 
@@ -24,11 +20,14 @@ class TelegramBot {
   BearSSL::Session session;
   BearSSL::X509List certificate;
   AsyncTelegram2 myBot;
+  String token;
+  int64_t adminChatId;
+  String boardName;
 
  public:
-  TelegramBot();
+  TelegramBot() : certificate(telegram_cert), myBot(client){};
 
-  void init();
+  void init(String token, int64_t adminChatId, String boardName);
   void sendMessage(String message);
   void update();
 };

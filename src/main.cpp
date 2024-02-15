@@ -4,7 +4,6 @@ GTimer timerOneSecond(MS);
 struct tm timeStructureNow;
 Configuration config;
 TelegramBot telegram;
-String mac = WiFi.macAddress();
 
 void setup() {
   Serial.begin(115200);
@@ -16,7 +15,6 @@ void setup() {
   configTime("MSK-3", "time.google.com", "time.windows.com", "pool.ntp.org");
   timerOneSecond.setInterval(1000);
 
-  // Инициализация файловой системы и загрузка конфигурации из файла
   if (LittleFS.begin()) {
     config.loadConfiguration();
     config.printConfiguration();
@@ -24,19 +22,25 @@ void setup() {
     Serial.println(F("*FS: An Error has occurred while mounting LittleFS."));
   }
 
-  while (time(nullptr) < 1700000000) {
-    Serial.printf("*NTP: Synchronization failed.\n");
-    delay(1000);
+  Serial.printf("*NTP: Synchronization");
+  for (int i = 0; i < 10; ++i) {
+    if (time(nullptr) < 1700000000) {
+      Serial.printf(".");
+      delay(1000);
+    } else {
+      updateTime();
+      Serial.printf(" [OK]\n*NTP: %s", asctime(&timeStructureNow));
+      break;
+    }
   }
 
-  updateTime();
-  Serial.print("*NTP: ");
-  Serial.println(getTimeString());
-  telegram.init();
+  telegram.init(config.getBotToken(), config.getAdminChatId(),
+                config.getBoardName());
 }
 
 void loop() {
   if (timerOneSecond.isReady()) triggerOneSecond();
+    telegram.update();
 }
 
 /**
@@ -44,7 +48,7 @@ void loop() {
  */
 void triggerOneSecond() {
   updateTime();
-  telegram.update();
+
 }
 
 /**
@@ -54,13 +58,4 @@ void updateTime() {
   time_t unixTimeNow;
   time(&unixTimeNow);
   localtime_r(&unixTimeNow, &timeStructureNow);
-}
-
-/**
- * Получение строки с текущими датой и временем.
- */
-String getTimeString() {
-  char buffer[80];
-  strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", &timeStructureNow);
-  return String(buffer);
 }
