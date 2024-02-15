@@ -20,14 +20,15 @@ void TelegramBot::init(String token, int64_t adminChatId, String boardName) {
 void TelegramBot::sendMessage(String message) {
   String boardNameLocal = (boardName == "") ? "" : boardName + "\n";
   myBot.sendTo(adminChatId, message + "\n----------\n" + boardNameLocal +
-                                String(asctime(&timeStructureNow)) +
+                                getTimeString() +
                                 "MAC: " + WiFi.macAddress() +
                                 "\nIP: " + WiFi.localIP().toString() + "\nv." +
-                                VERSION + "(" + BUILD_TIMESTAMP + ")");
+                                VERSION + " (" + BUILD_TIMESTAMP + ")");
 }
 
-void TelegramBot::update() {
+void TelegramBot::checkMessages() {
   TBMessage msg;
+  Serial.print(myBot.getNewMessage(msg));
   if (myBot.getNewMessage(msg)) {
     String message = msg.text;
     Serial.print("*TGM: Telegram Chat ID - " + String(msg.chatId) + " (" +

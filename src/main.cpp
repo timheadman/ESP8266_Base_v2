@@ -5,6 +5,9 @@ struct tm timeStructureNow;
 Configuration config;
 TelegramBot telegram;
 
+// **************************************************
+// ********************* SETUP **********************
+// **************************************************
 void setup() {
   Serial.begin(115200);
 
@@ -28,8 +31,7 @@ void setup() {
       Serial.printf(".");
       delay(1000);
     } else {
-      updateTime();
-      Serial.printf(" [OK]\n*NTP: %s", asctime(&timeStructureNow));
+      Serial.printf(" [OK]\n*NTP: %s", getTimeString().c_str());
       break;
     }
   }
@@ -38,24 +40,18 @@ void setup() {
                 config.getBoardName());
 }
 
+// **************************************************
+// ********************* LOOP ***********************
+// **************************************************
 void loop() {
   if (timerOneSecond.isReady()) triggerOneSecond();
-    telegram.update();
 }
 
 /**
  * Блок инструкций для запуска раз в секунду.
  */
 void triggerOneSecond() {
-  updateTime();
-
+  telegram.checkMessages();
 }
 
-/**
- * Обновление структуры хранящую текущее время.
- */
-void updateTime() {
-  time_t unixTimeNow;
-  time(&unixTimeNow);
-  localtime_r(&unixTimeNow, &timeStructureNow);
-}
+

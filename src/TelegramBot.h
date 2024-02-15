@@ -7,12 +7,8 @@
 #include <WiFiClientSecure.h>
 #include <time.h>
 
-#include "Configuration.h"
 #include "common.h"
 #include "../include/version.h"
-
-// main.h
-extern struct tm timeStructureNow;
 
 class TelegramBot {
  private:
@@ -29,7 +25,7 @@ class TelegramBot {
 
   void init(String token, int64_t adminChatId, String boardName);
   void sendMessage(String message);
-  void update();
+  void checkMessages();
 };
 
 #endif  // ESP8266_BASE_V2_TELEGRAM_H_
