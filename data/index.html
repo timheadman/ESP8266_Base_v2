@@ -14,13 +14,30 @@
   <body>
     <div class="headcontainer" style="font-size: 2rem">ESP8266</div>
     <div class="headcontainer">
-      <a href="/settings" type="button" class="headbutton"
-        ><i class="fa fa-wrench"></i
-      ></a>
+      <a href="/settings" type="button" class="headbutton">
+        <i class="fa fa-wrench"></i>
+      </a>
     </div>
-    %HEADERPLACEHOLDER%
+    <div style="font-size: 1.2rem; text-transform: uppercase; font-weight: bold;">%PH_1%</div>
+    <span id="pins" style="font-style: italic">[No Data]</span><br>
+    <span id="time" style="font-style: italic">Mon Jan 00 00:00:00 1900</span><br>
     <h2>MAIN</h2>
-    %MAINPLACEHOLDER%
+    <div style="font-style: italic; margin-bottom: 2rem">
+      Temperature: %PH_TEMP%&#x000B0;C<br>
+      Humidity: %PH_HUM%&#x00025;<br>
+      Pressure: %PH_HG%mmHg (%PH_BUILDIN_TEMP%&#x000B0;C)<br>
+    </div>
+    <input type="text" id="input_1" style="text-align: center; width: 5rem; font-size: 1rem; font-weight: bold;" placeholder="VALUE"/>
+    <button type="button" id="button3" onclick="processingButton(this)" style="margin-left: 1rem">SEND</button>
+    <br><br>
+    <h3>PIN XX</h3>
+    <label class="switch">
+      <input type="checkbox" onchange="toggleCheckbox(this)" id="switch1">
+      <span class="slider"></span>
+    </label>
+    <br><br>
+    <button type="button" id="button1" disabled="false" onclick="processingButton(this)">BUTTON1</button>
+     
     <script src="script.js"></script>
   </body>
 </html>

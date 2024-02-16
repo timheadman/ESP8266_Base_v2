@@ -1,6 +1,6 @@
 #include "TTelegram.h"
 
-void TTelegram::init(String token, int64_t adminChatId, String boardName) {
+void TTelegram::begin(String token, int64_t adminChatId, String boardName) {
   this->token = token;
   this->adminChatId = adminChatId;
   this->boardName = boardName;
@@ -46,9 +46,7 @@ void TTelegram::checkMessages() {
 }
 
 void TTelegram::commandPin(String message) {
-  sendMessage("D4:" + String(pins.d4) + " D5:" + String(pins.d5) +
-              " D6:" + String(pins.d6) + " D7:" + String(pins.d7) +
-              " D8:" + String(pins.d8));
+  sendMessage(pins.toString());
 }
 
 void TTelegram::commandHelp() {

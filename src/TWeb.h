@@ -1,26 +1,34 @@
 #ifndef ESP8266_BASE_V2_TWEB_H_
 #define ESP8266_BASE_V2_TWEB_H_
 
+// https://github.com/esphome/ESPAsyncWebServer
+
+#define WEBSERVER_H  // https://github.com/me-no-dev/ESPAsyncWebServer/issues/418#issuecomment-667976368
+
 #include <Arduino.h>
+#include <ESP8266WebServer.h>
 #include <ESPAsyncTCP.h>
-#include <ESPAsyncWebServer.h>
+#include <ESPAsyncWebServer.h>  //https://github.com/me-no-dev/ESPAsyncWebServer/issues/418#issuecomment-667976368
 #include <LittleFS.h>
 
+#include "TConfiguration.h"
 #include "common.h"
+
+// main.h
+extern TPins pins;
+extern TConfiguration config;
 
 class TWeb {
  public:
-  TWeb();
-  TWeb(String boardName);
+  TWeb() : server(80) {}
 
-  void initWebServer();
-  void notFound(AsyncWebServerRequest *request);
-  static String processingPlaceHolder(AsyncWebServerRequest *request, const String &var);
-  String getPinStringStatus(uint8_t pin);
+  void begin();
 
  private:
   AsyncWebServer server;
-  String boardName;
+
+  static String processor(const String& var);
+  static void notFound(AsyncWebServerRequest* request);
 };
 
 #endif  // ESP8266_BASE_V2_TWEB_H_

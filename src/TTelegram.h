@@ -11,13 +11,13 @@
 #include "common.h"
 
 // main.h
-extern Pins pins;
+extern TPins pins;
 
 class TTelegram {
  public:
   TTelegram() : certificate(telegram_cert), myBot(client){};
 
-  void init(String token, int64_t adminChatId, String boardName);
+  void begin(String token, int64_t adminChatId, String boardName);
   void sendMessage(String message);
   void checkMessages();
 

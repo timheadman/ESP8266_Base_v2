@@ -4,7 +4,8 @@ GTimer timerOneSecond(MS);
 struct tm timeStructureNow;
 TConfiguration config;
 TTelegram telegram;
-Pins pins;
+TWeb web;
+TPins pins;
 
 // **************************************************
 // ********************* SETUP **********************
@@ -12,7 +13,19 @@ Pins pins;
 void setup() {
   Serial.begin(115200);
 
-  pinMode(D4, OUTPUT);
+  // Выводы которые требуют наличия определенного логического уровня на момент
+  // включения микроконтроллера.
+  pinMode(D0, OUTPUT);
+  pinMode(D3, OUTPUT);
+  pinMode(D4, OUTPUT);  // LED
+  pinMode(D8, OUTPUT);
+
+  // Выводы которые могут использоваться для получения сигнала.
+  pinMode(D1, INPUT);
+  pinMode(D2, INPUT);
+  pinMode(D5, INPUT);
+  pinMode(D6, INPUT);
+  pinMode(D7, INPUT);
 
   WiFiManager wifiManager;
   wifiManager.setTimeout(60);
@@ -39,8 +52,10 @@ void setup() {
     }
   }
 
-  telegram.init(config.getBotToken(), config.getAdminChatId(),
-                config.getBoardName());
+  telegram.begin(config.getBotToken(), config.getAdminChatId(),
+                 config.getBoardName());
+
+  web.begin();
 }
 
 // **************************************************
@@ -57,15 +72,16 @@ void triggerOneSecond() {
   loadPins();
   telegram.checkMessages();
   digitalWrite(D4, !digitalRead(D4));
+  Serial.println(pins.toString());
 }
 
 /**
  * Блок заполнения состояния пинов.
  */
 void loadPins() {
-  pins.d4 = digitalRead(D4);
-  pins.d5 = digitalRead(D5);
-  pins.d6 = digitalRead(D6);
-  pins.d7 = digitalRead(D7);
-  pins.d8 = digitalRead(D8);
+  pins.setD4(digitalRead(D4));
+  pins.setD5(digitalRead(D5));
+  pins.setD6(digitalRead(D6));
+  pins.setD7(digitalRead(D7));
+  pins.setD8(digitalRead(D8));
 }
