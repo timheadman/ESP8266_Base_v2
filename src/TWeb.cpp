@@ -1,6 +1,8 @@
 #include "TWeb.h"
 
-#include <AsyncElegantOTA.h>
+#include <AsyncElegantOTA.h>  // Не убирать в header, не будет работать.
+
+// TODO: Добавить настройки с редактированием имени контроллера.
 
 /**
  * Запуск Web сервера
