@@ -13,19 +13,7 @@ TPins pins;
 void setup() {
   Serial.begin(115200);
 
-  // Выводы которые требуют наличия определенного логического уровня на момент
-  // включения микроконтроллера.
-  pinMode(D0, OUTPUT);
-  pinMode(D3, OUTPUT);
-  pinMode(D4, OUTPUT);  // LED
-  pinMode(D8, OUTPUT);
-
-  // Выводы которые могут использоваться для получения сигнала.
-  pinMode(D1, INPUT);
-  pinMode(D2, INPUT);
-  pinMode(D5, INPUT);
-  pinMode(D6, INPUT);
-  pinMode(D7, INPUT);
+  initPins();
 
   WiFiManager wifiManager;
   wifiManager.setTimeout(60);
@@ -75,10 +63,37 @@ void triggerOneSecond() {
   Serial.println(pins.toString());
 }
 
+// **************************************************
+// **************************************************
+// **************************************************
+
+/**
+ * Блок инициализации пинов ввода/вывода.
+ */
+void initPins() {
+  // Выводы которые требуют наличия определенного логического уровня на момент
+  // включения микроконтроллера.
+  pinMode(D0, OUTPUT);
+  pinMode(D3, OUTPUT);
+  pinMode(D4, OUTPUT);  // LED
+  pinMode(D8, OUTPUT);
+
+  // Выводы которые могут использоваться для получения сигнала.
+  pinMode(D1, INPUT);
+  pinMode(D2, INPUT);
+  pinMode(D5, INPUT);
+  pinMode(D6, INPUT);
+  pinMode(D7, INPUT);
+}
+
 /**
  * Блок заполнения состояния пинов.
  */
 void loadPins() {
+  pins.setA0(analogRead(A0));
+  pins.setD1(digitalRead(D1));
+  pins.setD2(digitalRead(D2));
+  pins.setD3(digitalRead(D3));
   pins.setD4(digitalRead(D4));
   pins.setD5(digitalRead(D5));
   pins.setD6(digitalRead(D6));

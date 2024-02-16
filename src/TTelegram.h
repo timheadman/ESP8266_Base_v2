@@ -30,9 +30,8 @@ class TTelegram {
   int64_t adminChatId;
   String boardName;
 
-  void commandPin(String message);
+  void commandPins(String message);
   void commandHelp();
-  void commandSensors();
 };
 
 #endif  // ESP8266_BASE_V2_TTELEGRAM_H_

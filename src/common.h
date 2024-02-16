@@ -7,6 +7,18 @@
 
 class TPins {
  public:
+  uint16_t getA0() const { return a0; }
+  void setA0(const uint16_t &a0_) { a0 = a0_; }
+
+  uint16_t getD1() const { return d1; }
+  void setD1(const uint16_t &d1_) { d1 = d1_; }
+
+  uint16_t getD2() const { return d2; }
+  void setD2(const uint16_t &d2_) { d2 = d2_; }
+
+  uint16_t getD3() const { return d3; }
+  void setD3(const uint16_t &d3_) { d3 = d3_; }
+
   uint16_t getD4() const { return d4; }
   void setD4(const uint16_t &d4_) { d4 = d4_; }
 
@@ -23,12 +35,17 @@ class TPins {
   void setD8(const uint16_t &d8_) { d8 = d8_; }
 
   String toString() {
-    return "[" + String(getD4()) + ", " + String(getD5()) + ", " +
-           String(getD6()) + ", " + String(getD7()) + ", " + String(getD8()) +
-           "]";
+    return "[" + String(getA0()) + "] [" + String(getD1()) + ", " +
+           String(getD2()) + ", " + String(getD3()) + ", " + String(getD4()) +
+           ", " + String(getD5()) + ", " + String(getD6()) + ", " +
+           String(getD7()) + ", " + String(getD8()) + "]";
   }
 
  private:
+  uint16_t a0;
+  uint16_t d1;
+  uint16_t d2;
+  uint16_t d3;
   uint16_t d4;
   uint16_t d5;
   uint16_t d6;
