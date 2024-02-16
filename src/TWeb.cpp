@@ -1,5 +1,7 @@
 #include "TWeb.h"
 
+#include <AsyncElegantOTA.h>
+
 /**
  * Запуск Web сервера
  * @param boardName имя контроллера (название прибора)
@@ -22,6 +24,7 @@ void TWeb::begin() {
     request->send(LittleFS, "/index.html", String(), false, processor);
   });
 
+  AsyncElegantOTA.begin(&server);
   server.onNotFound(notFound);
   server.begin();  // Запуск AsyncWebServer
   Serial.println(F("[OK]"));

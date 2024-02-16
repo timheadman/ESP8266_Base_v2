@@ -30,7 +30,7 @@ class TTelegram {
   int64_t adminChatId;
   String boardName;
 
-  void commandPins(String message);
+  void commandPins();
   void commandHelp();
 };
 

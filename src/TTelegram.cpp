@@ -28,7 +28,7 @@ void TTelegram::sendMessage(String message) {
 /*
 help - Description
 pins - Another description
-*/ 
+*/
 void TTelegram::checkMessages() {
   TBMessage msg;
   MessageType msg_type = myBot.getNewMessage(msg);
@@ -39,17 +39,15 @@ void TTelegram::checkMessages() {
                  "). New message: " + String(message) + "\n");
     if (message == "/help") {
       commandHelp();
-    } else if (message.substring(0, 4) == "/pins") {
-      commandPins(message);
+    } else if (message.substring(0, 5) == "/pins") {
+      commandPins();
     } else {
       sendMessage("Message: " + message);
     }
   }
 }
 
-void TTelegram::commandPins(String message) {
-  sendMessage(pins.toString());
-}
+void TTelegram::commandPins() { sendMessage(pins.toString()); }
 
 void TTelegram::commandHelp() {
   time_t timeDiff = getOnlineTime();
@@ -60,4 +58,3 @@ void TTelegram::commandHelp() {
                        String(sec) + " seconds.";
   sendMessage("\nOnline: " + strTimeDiff);
 }
-
