@@ -8,6 +8,7 @@
 #include <WiFiManager.h>
 
 #include "TConfiguration.h"
+#include "TNtc.h"
 #include "TTelegram.h"
 #include "TWeb.h"
 

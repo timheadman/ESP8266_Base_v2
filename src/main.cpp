@@ -6,6 +6,7 @@ TConfiguration config;
 TTelegram telegram;
 TWeb web;
 TPins pins;
+TNtc ntc = TNtc(A0);
 
 // **************************************************
 // ********************* SETUP **********************
@@ -58,9 +59,9 @@ void loop() {
  */
 void triggerOneSecond() {
   loadPins();
+  Serial.printf("%.1f - %.1f\n", ntc.getTemperature(), ntc.getTemperatureB());
   telegram.checkMessages();
   digitalWrite(D4, !digitalRead(D4));
-  Serial.println(pins.toString());
 }
 
 // **************************************************
