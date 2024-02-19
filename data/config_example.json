@@ -1,5 +1,6 @@
 {
   "boardName": "Test Board",
+  "onlineTime": 0,
   "host": "HOSTNAME",
   "port": 80,
   "botToken": "0000000000:XXXXXXXXXXXXXXXXXXXXXXXX",

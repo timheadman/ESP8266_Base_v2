@@ -12,11 +12,13 @@
 #include <LittleFS.h>
 
 #include "TConfiguration.h"
+#include "TTime.h"
 #include "common.h"
 
 // main.h
 extern TPins pins;
 extern TConfiguration config;
+extern TTime timeNow;
 
 class TWeb {
  public:

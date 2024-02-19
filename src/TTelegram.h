@@ -8,10 +8,12 @@
 #include <time.h>
 
 #include "../include/version.h"
+#include "TTime.h"
 #include "common.h"
 
 // main.h
 extern TPins pins;
+extern TTime timeNow;
 
 class TTelegram {
  public:

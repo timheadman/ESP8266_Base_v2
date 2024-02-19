@@ -20,7 +20,8 @@ void TTelegram::begin(String token, int64_t adminChatId, String boardName) {
 void TTelegram::sendMessage(String message) {
   String boardNameLocal = (boardName == "") ? "" : boardName + "\n";
   myBot.sendTo(adminChatId, message + "\n----------\n" + boardNameLocal +
-                                getTimeString() + "MAC: " + WiFi.macAddress() +
+                                timeNow.getTimeString() +
+                                "MAC: " + WiFi.macAddress() +
                                 "\nIP: " + WiFi.localIP().toString() + "\nv." +
                                 VERSION + " (" + BUILD_TIMESTAMP + ")");
 }
@@ -50,11 +51,5 @@ void TTelegram::checkMessages() {
 void TTelegram::commandPins() { sendMessage(pins.toString()); }
 
 void TTelegram::commandHelp() {
-  time_t timeDiff = getOnlineTime();
-  uint16_t hour = timeDiff / 3600;
-  uint8_t min = (timeDiff / 60) % 60;
-  uint8_t sec = timeDiff % 60;
-  String strTimeDiff = String(hour) + " hours " + String(min) + " minutes " +
-                       String(sec) + " seconds.";
-  sendMessage("\nOnline: " + strTimeDiff);
+  sendMessage("\nOnline: " + timeNow.getOnlineString());
 }

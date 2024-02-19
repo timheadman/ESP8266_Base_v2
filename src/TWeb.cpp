@@ -17,7 +17,7 @@ void TWeb::begin() {
     request->send(LittleFS, "/script.js", "text/JavaScript");
   });
   server.on("/time", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(200, "text/plane", getTimeString());
+    request->send(200, "text/plane", timeNow.getTimeString());
   });
   server.on("/pins", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(200, "text/plane", pins.toString());

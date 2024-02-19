@@ -10,6 +10,7 @@
 #include "TConfiguration.h"
 #include "TNtc.h"
 #include "TTelegram.h"
+#include "TTime.h"
 #include "TWeb.h"
 
 void triggerOneSecond();

@@ -7,7 +7,7 @@
 
 class TConfiguration {
  public:
-  TConfiguration() : fileName("/config.json") {}
+  TConfiguration();
 
   String getFileName() { return fileName; }
   String getBoardName() { return boardName; }

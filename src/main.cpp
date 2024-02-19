@@ -7,6 +7,7 @@ TTelegram telegram;
 TWeb web;
 TPins pins;
 TNtc ntc = TNtc(A0);
+TTime timeNow;
 
 // **************************************************
 // ********************* SETUP **********************
@@ -36,7 +37,7 @@ void setup() {
       Serial.printf(".");
       delay(1000);
     } else {
-      Serial.printf(" [OK]\n*NTP: %s", getTimeString().c_str());
+      Serial.printf(" [OK]\n*NTP: %s", timeNow.getTimeString().c_str());
       break;
     }
   }

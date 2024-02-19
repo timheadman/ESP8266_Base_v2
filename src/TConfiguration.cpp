@@ -1,8 +1,20 @@
 #include "TConfiguration.h"
 
+TConfiguration::TConfiguration()
+    : fileName("/config.json"),
+      boardName(""),
+      host(""),
+      port(0),
+      botToken(""),
+      adminChatId(0),
+      dbIp(""),
+      dbPort(0),
+      dbUser(""),
+      dbPwd(""),
+      dbName("") {}
+
 /**
- * Загрузка конфигурационного файла (LittleFS) в структуру Config
- * @param config ссылка на структуру с параметрами
+ * Загрузка конфигурационного файла из LittleFS
  * @return true или false
  */
 bool TConfiguration::loadConfiguration() {
@@ -28,10 +40,12 @@ bool TConfiguration::loadConfiguration() {
   Serial.print(F("*CFG: Loading from file "));
   // serializeJsonPretty(jsonDoc, Serial);
   boardName = jsonDoc["boardName"].as<String>();
-  host = jsonDoc["host"].as<String>();
-  port = jsonDoc["port"].as<uint16_t>();
+  // Telegram
   botToken = jsonDoc["botToken"].as<String>();
   adminChatId = jsonDoc["adminChatId"].as<int64_t>();
+  // Database
+  host = jsonDoc["host"].as<String>();
+  port = jsonDoc["port"].as<uint16_t>();
   dbIp = jsonDoc["dbIp"].as<String>();
   dbPort = jsonDoc["dbPort"].as<uint16_t>();
   dbUser = jsonDoc["dbUser"].as<String>();
@@ -45,10 +59,8 @@ bool TConfiguration::loadConfiguration() {
 }
 
 /**
- * Загрузка конфигурационного файла (LittleFS) в структуру Config
- * @param config ссылка на структуру с параметрами
+ * Загрузка конфигурационного файла в LittleFS
  */
-// Запись конфигурационного файла (LittleFS)
 void TConfiguration::saveConfiguration() {
   // Open file for writing
   File configFile = LittleFS.open(fileName, "w+");
@@ -62,10 +74,12 @@ void TConfiguration::saveConfiguration() {
   // https://arduinojson.org/v6/assistant/
   DynamicJsonDocument jsonDoc(512);
   jsonDoc["boardName"] = boardName;
-  jsonDoc["host"] = host;
-  jsonDoc["port"] = port;
+  // Telegram
   jsonDoc["botToken"] = botToken;
   jsonDoc["adminChatId"] = adminChatId;
+  // Database
+  jsonDoc["host"] = host;
+  jsonDoc["port"] = port;
   jsonDoc["sqlIP"] = dbIp;
   jsonDoc["sqlPort"] = dbPort;
   jsonDoc["sqlUser"] = dbUser;

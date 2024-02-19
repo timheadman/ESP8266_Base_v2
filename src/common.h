@@ -3,7 +3,6 @@
 
 #include <Arduino.h>
 
-#include "common.h"
 
 class TPins {
  public:
@@ -35,10 +34,11 @@ class TPins {
   void setD8(const uint16_t &d8_) { d8 = d8_; }
 
   String toString() {
-    return "[A0:" + String(getA0()) + "] [D1:" + String(getD1()) + ", D2:" +
-           String(getD2()) + ", D3:" + String(getD3()) + ", D4:" + String(getD4()) +
-           ", D5:" + String(getD5()) + ", D6:" + String(getD6()) + ", D7:" +
-           String(getD7()) + ", D8:" + String(getD8()) + "]";
+    return "[A0:" + String(getA0()) + "] [D1:" + String(getD1()) +
+           ", D2:" + String(getD2()) + ", D3:" + String(getD3()) +
+           ", D4:" + String(getD4()) + ", D5:" + String(getD5()) +
+           ", D6:" + String(getD6()) + ", D7:" + String(getD7()) +
+           ", D8:" + String(getD8()) + "]";
   }
 
  private:
@@ -52,9 +52,5 @@ class TPins {
   uint16_t d7;
   uint16_t d8;
 };
-
-uint32_t getOnlineTime();
-tm getTimeStructure();
-String getTimeString();
 
 #endif  // ESP8266_BASE_V2_COMMON_H_
