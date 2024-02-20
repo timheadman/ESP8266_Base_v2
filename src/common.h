@@ -1,9 +1,6 @@
 #ifndef ESP8266_BASE_V2_COMMON_H_
 #define ESP8266_BASE_V2_COMMON_H_
 
-#include <Arduino.h>
-
-
 class TPins {
  public:
   uint16_t getA0() const { return a0; }

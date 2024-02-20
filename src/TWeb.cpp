@@ -1,7 +1,5 @@
 #include "TWeb.h"
 
-#include <AsyncElegantOTA.h>  // Не убирать в header, не будет работать.
-
 // TODO: Добавить настройки с редактированием имени контроллера.
 
 /**
@@ -26,9 +24,9 @@ void TWeb::begin() {
     request->send(LittleFS, "/index.html", String(), false, processor);
   });
 
-  AsyncElegantOTA.begin(&server);
+  ElegantOTA.begin(&server);
   server.onNotFound(notFound);
-  server.begin();  // Запуск AsyncWebServer
+  server.begin();
   Serial.println(F("[OK]"));
 }
 
