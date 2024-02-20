@@ -15,6 +15,5 @@
 
 void triggerOneSecond();
 void initPins();
-void loadPins();
 
 #endif  // ESP8266_BASE_V2_BASE_H_

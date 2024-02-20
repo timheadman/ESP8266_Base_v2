@@ -18,7 +18,7 @@ void TWeb::begin() {
     request->send(200, "text/plane", timeNow.getTimeString());
   });
   server.on("/pins", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(200, "text/plane", pins.toString());
+    request->send(200, "text/plane", getPinsStatusString());
   });
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(LittleFS, "/index.html", String(), false, processor);

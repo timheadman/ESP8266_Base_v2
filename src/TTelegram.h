@@ -12,7 +12,6 @@
 #include "common.h"
 
 // main.h
-extern TPins pins;
 extern TTime timeNow;
 
 class TTelegram {

@@ -17,7 +17,6 @@
 #include "common.h"
 
 // main.h
-extern TPins pins;
 extern TConfiguration config;
 extern TTime timeNow;
 

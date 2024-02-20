@@ -5,7 +5,6 @@ struct tm timeStructureNow;
 TConfiguration config;
 TTelegram telegram;
 TWeb web;
-TPins pins;
 TNtc ntc = TNtc(A0);
 TTime timeNow;
 
@@ -59,7 +58,6 @@ void loop() {
  * Блок инструкций для запуска раз в секунду.
  */
 void triggerOneSecond() {
-  loadPins();
   Serial.printf("%.1f - %.1f\n", ntc.getTemperature(), ntc.getTemperatureB());
   telegram.checkMessages();
   digitalWrite(D4, !digitalRead(D4));
@@ -88,17 +86,4 @@ void initPins() {
   pinMode(D7, INPUT);
 }
 
-/**
- * Блок заполнения состояния пинов.
- */
-void loadPins() {
-  pins.setA0(analogRead(A0));
-  pins.setD1(digitalRead(D1));
-  pins.setD2(digitalRead(D2));
-  pins.setD3(digitalRead(D3));
-  pins.setD4(digitalRead(D4));
-  pins.setD5(digitalRead(D5));
-  pins.setD6(digitalRead(D6));
-  pins.setD7(digitalRead(D7));
-  pins.setD8(digitalRead(D8));
-}
+
