@@ -21,9 +21,9 @@ void TTelegram::sendMessage(String message) {
   String boardNameLocal = (boardName == "") ? "" : boardName + "\n";
   myBot.sendTo(adminChatId, message + "\n----------\n" + boardNameLocal +
                                 timeNow.getTimeString() +
-                                "MAC: " + WiFi.macAddress() +
-                                "\nIP: " + WiFi.localIP().toString() + "\nv." +
-                                VERSION + " (" + BUILD_TIMESTAMP + ")");
+                                "MAC: " + WiFi.macAddress() + "\nIP: http://" +
+                                WiFi.localIP().toString() + "\nv." + VERSION +
+                                " (" + BUILD_TIMESTAMP + ")");
 }
 
 /*

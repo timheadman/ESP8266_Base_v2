@@ -8,7 +8,7 @@
 #include <Arduino.h>
 #include <ESP8266WebServer.h>
 #include <ESPAsyncTCP.h>
-#include <ESPAsyncWebServer.h>  //https://github.com/me-no-dev/ESPAsyncWebServer/issues/418#issuecomment-667976368
+#include <ESPAsyncWebServer.h> 
 #include <ElegantOTA.h>
 #include <LittleFS.h>
 

@@ -31,8 +31,10 @@ void TWeb::begin() {
 }
 
 String TWeb::processor(const String &var) {
-  if (var == "PH_1") return config.getBoardName();
-  return String();
+  if (var == "PH_1")
+    return config.getBoardName();
+  else
+    return String();
 }
 
 void TWeb::notFound(AsyncWebServerRequest *request) {
