@@ -43,6 +43,19 @@ String TPin::getPinsStatusString() {
 }
 
 /**
+ * Вывод состояния всех пинов в формате HTML.
+ */
+String TPin::getPinsStatusHtml() {
+  return "[A0:" + String(analogRead(A0)) + "]<br>" +
+         "[D0:" + String(digitalRead(D0)) + " D1:" + String(digitalRead(D1)) +
+         " D2:" + String(digitalRead(D2)) + "]<br>" +
+         "[D3:" + String(digitalRead(D3)) + " D4:" + String(digitalRead(D4)) +
+         " D5:" + String(digitalRead(D5)) + "]<br>" +
+         "[D6:" + String(digitalRead(D6)) + " D7:" + String(digitalRead(D7)) +
+         " D8:" + String(digitalRead(D8)) + "]";
+}
+
+/**
  * Блок инициализации пинов ввода/вывода.
  */
 void TPin::initPins() {

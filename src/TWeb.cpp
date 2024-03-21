@@ -22,7 +22,7 @@ void TWeb::begin() {
   });
 
   server.on("/pins", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(200, "text/plane", TPin::getPinsStatusString());
+    request->send(200, "text/plane", TPin::getPinsStatusHtml());
   });
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
@@ -33,7 +33,6 @@ void TWeb::begin() {
     Serial.println("*WEB: GET[" + String(request->args()) +
                    "]: " + request->getParam("element")->value() + ", " +
                    request->getParam("value")->value());
-    // GET значения /set?element=<Message1>&value=<Message2>
     if (request->hasParam("element")) {
       String webElement = request->getParam("element")->value();
       uint8_t pinValue = request->hasParam("value")

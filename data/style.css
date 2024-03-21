@@ -64,6 +64,11 @@ input:focus {
   border-bottom: 2px solid rgba(204, 0, 75, 1);
 }
 
+td {
+  padding-left: 10px; 
+  padding-bottom: 20px; 
+}
+
 .headcontainer {
   display: inline-block;
   vertical-align: middle;
