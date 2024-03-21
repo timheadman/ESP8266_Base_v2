@@ -8,8 +8,8 @@
 #include <time.h>
 
 #include "../include/version.h"
+#include "TPin.h"
 #include "TTime.h"
-#include "common.h"
 
 // main.h
 extern TTime timeNow;

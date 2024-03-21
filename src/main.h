@@ -9,6 +9,7 @@
 
 #include "TConfiguration.h"
 #include "TNtc.h"
+#include "TPin.h"
 #include "TTelegram.h"
 #include "TTime.h"
 #include "TWeb.h"

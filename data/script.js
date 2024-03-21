@@ -14,16 +14,10 @@ function refreshValue(elementid) {
   xhr.send();
 }
 
-const showElement = (element, status) => (element.disabled = !status);
-
 function toggleCheckbox(element) {
   console.log("toggleCheckbox: " + element.id);
   var xhr = new XMLHttpRequest();
-  if (element.checked) {
-    xhr.open("GET", "/set?element=" + element.id + "&value=1", true);
-  } else {
-    xhr.open("GET", "/set?element=" + element.id + "&value=0", true);
-  }
+  xhr.open("GET", "/set?element=" + element.id + "&value=" + (element.checked ? "1" : "0"), true);
   xhr.send();
 }
 

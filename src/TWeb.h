@@ -8,17 +8,18 @@
 #include <Arduino.h>
 #include <ESP8266WebServer.h>
 #include <ESPAsyncTCP.h>
-#include <ESPAsyncWebServer.h> 
+#include <ESPAsyncWebServer.h>
 #include <ElegantOTA.h>
 #include <LittleFS.h>
 
 #include "TConfiguration.h"
+#include "TPin.h"
 #include "TTime.h"
-#include "common.h"
 
 // main.h
 extern TConfiguration config;
 extern TTime timeNow;
+extern TPin pin;
 
 class TWeb {
  public:

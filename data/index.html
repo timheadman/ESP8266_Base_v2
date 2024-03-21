@@ -18,9 +18,24 @@
         <i class="fa fa-wrench"></i>
       </a>
     </div>
-    <div id="time" style="font-style: italic">Mon Jan 00 00:00:00 1900</div><br>
-    <div style="font-size: 1.2rem; text-transform: uppercase; font-weight: bold;">%PH_1%</div><br>
-    <div id="pins" style="font-style: italic">[No Data]</div><br>
+    <div id="time">Mon Jan 00 00:00:00 1900</div><br>
+    <h2>%BOARDNAME%</h2><br>
+    <div id="pins">[No Data]</div><br>
+
+    <label class="toggle">
+      <input class="toggle-checkbox" id="D0" onclick="toggleCheckbox(this)" type="checkbox" %D0_CHECKED%>
+      <div class="toggle-switch"></div>
+      <span class="toggle-label">D0</span>
+    </label>
+
+    <br><br>
+    
+    <label class="toggle">
+      <input class="toggle-checkbox" id="D4" onclick="toggleCheckbox(this)" type="checkbox" %D4_CHECKED%>
+      <div class="toggle-switch"></div>
+      <span class="toggle-label">D4</span>
+    </label>
+
     <script src="script.js"></script>
   </body>
 </html>

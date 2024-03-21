@@ -48,7 +48,7 @@ void TTelegram::checkMessages() {
   }
 }
 
-void TTelegram::commandPins() { sendMessage(getPinsStatusString()); }
+void TTelegram::commandPins() { sendMessage(TPin::getPinsStatusString()); }
 
 void TTelegram::commandHelp() {
   sendMessage("\nOnline: " + timeNow.getOnlineString());

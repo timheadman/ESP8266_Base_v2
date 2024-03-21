@@ -1,4 +1,5 @@
 #include "main.h"
+
 // AP IP address: 192.168.4.1, set manual IP in network settings.
 GTimer timerOneSecond(MS);
 struct tm timeStructureNow;
@@ -14,7 +15,7 @@ TTime timeNow;
 void setup() {
   Serial.begin(115200);
 
-  initPins();
+  TPin::initPins();
 
   WiFiManager wifiManager;
   wifiManager.setTimeout(60);
@@ -60,30 +61,5 @@ void loop() {
 void triggerOneSecond() {
   Serial.printf("%.1f - %.1f\n", ntc.getTemperature(), ntc.getTemperatureB());
   telegram.checkMessages();
-  digitalWrite(D4, !digitalRead(D4));
+  // digitalWrite(D4, !digitalRead(D4));
 }
-
-// **************************************************
-// **************************************************
-// **************************************************
-
-/**
- * Блок инициализации пинов ввода/вывода.
- */
-void initPins() {
-  // Выводы которые требуют наличия определенного логического уровня на момент
-  // включения микроконтроллера.
-  pinMode(D0, OUTPUT);
-  pinMode(D3, OUTPUT);
-  pinMode(D4, OUTPUT);  // LED
-  pinMode(D8, OUTPUT);
-
-  // Выводы которые могут использоваться для получения сигнала.
-  pinMode(D1, INPUT);
-  pinMode(D2, INPUT);
-  pinMode(D5, INPUT);
-  pinMode(D6, INPUT);
-  pinMode(D7, INPUT);
-}
-
-
